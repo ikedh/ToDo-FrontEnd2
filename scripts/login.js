@@ -1,0 +1,35 @@
+window.addEventListener('load', function () {
+    /* ---------------------- obtenemos variables globales ---------------------- */
+   
+    
+
+
+
+    /* -------------------------------------------------------------------------- */
+    /*            FUNCIÓN 1: Escuchamos el submit y preparamos el envío           */
+    /* -------------------------------------------------------------------------- */
+    form.addEventListener('submit', function (event) {
+       
+        
+
+
+
+    });
+
+
+    /* -------------------------------------------------------------------------- */
+    /*                     FUNCIÓN 2: Realizar el login [POST]                    */
+    /* -------------------------------------------------------------------------- */
+    function realizarLogin(settings) {
+       
+
+
+
+
+        
+    };
+
+
+});
+/* 
+https://todo-api.ctd.academy/v1 */
