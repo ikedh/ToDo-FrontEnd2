@@ -1,8 +1,9 @@
 window.addEventListener('load', function () {
     /* ---------------------- obtenemos variables globales ---------------------- */
-   
-    
-
+        const form = document.forms[0]
+        const email = document.querySelector("#inputEmail")
+        const password = document.querySelector("#inputPassword")
+        const url = "https://todo-api.ctd.academy/v1"
 
 
     /* -------------------------------------------------------------------------- */
@@ -10,10 +11,23 @@ window.addEventListener('load', function () {
     /* -------------------------------------------------------------------------- */
     form.addEventListener('submit', function (event) {
        
-        
+        event.preventDefault()
 
+        const payload ={
+            email: email.value,
+            password: password.value  
+        }
 
-
+        const settings = {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers:{
+                'Content-Type':'application/json'
+            },
+        }
+            
+            realizarLogin(settings)
+            form.reset()
     });
 
 
@@ -22,7 +36,28 @@ window.addEventListener('load', function () {
     /* -------------------------------------------------------------------------- */
     function realizarLogin(settings) {
        
+        fetch(`${url}/users/login`,settings)
+        .then(response =>{
+            console.log(response);
+            if(response.ok != true){
+                alert("Los datos son incorrectos")
+            }
 
+            return response.json()
+        })
+        .then(data => {
+            console.log(data);
+            console.log("Promesa Realizada");
+
+            if(data.jwt){
+                localStorage.setItem('jwt', JSON.stringify(data.jwt))
+
+                location.replace('/mis-tareas.html')
+            }
+        }).catch(err => {
+            console.log("Promesa Rechazada");
+            console.log(err);
+        })
 
 
 
@@ -31,5 +66,4 @@ window.addEventListener('load', function () {
 
 
 });
-/* 
-https://todo-api.ctd.academy/v1 */
+
